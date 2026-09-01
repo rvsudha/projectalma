@@ -1,0 +1,36 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  position: relative;
+  padding: 0 0 20px 26px;
+  border-left: 2px solid var(--line);
+}
+.item:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+.dot {
+  position: absolute;
+  left: -7px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--teal-500);
+  border: 2px solid var(--surface);
+}
+.dotMuted {
+  background: var(--line-strong);
+}
+.what {
+  font-weight: 550;
+  font-size: 0.92rem;
+}
+.when {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}

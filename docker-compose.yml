@@ -1,0 +1,65 @@
+name: projectalma
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: projectalma
+      POSTGRES_PASSWORD: projectalma
+      POSTGRES_DB: projectalma
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U projectalma -d projectalma"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      DEBUG: ${DEBUG:-true}
+      DATABASE_URL: postgresql+asyncpg://projectalma:projectalma@db:5432/projectalma
+      SECRET_KEY: ${SECRET_KEY:-dev-only-insecure-secret-change-me}
+      CORS_ORIGINS: http://localhost:3000
+      FRONTEND_BASE_URL: http://localhost:3000
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-ProjectAlma <noreply@projectalma.com>}
+      ATTORNEY_NOTIFICATION_EMAIL: ${ATTORNEY_NOTIFICATION_EMAIL:-intake@projectalma.com}
+      SEED_ATTORNEY_EMAIL: ${SEED_ATTORNEY_EMAIL:-attorney@projectalma.com}
+      SEED_ATTORNEY_PASSWORD: ${SEED_ATTORNEY_PASSWORD:-changeme123}
+      STORAGE_BACKEND: local
+      STORAGE_LOCAL_DIR: /data/resumes
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+    volumes:
+      - resume_data:/data/resumes
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      API_BASE_URL: http://backend:8000/api/v1
+      SESSION_COOKIE_NAME: projectalma_session
+      COOKIE_SECURE: "0"
+    ports:
+      - "3000:3000"
+
+volumes:
+  db_data:
+  resume_data:

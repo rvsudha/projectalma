@@ -1,0 +1,91 @@
+.btn {
+  --btn-bg: var(--teal-600);
+  --btn-fg: #fff;
+  --btn-border: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.06s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover {
+  text-decoration: none;
+  background: var(--teal-700);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary {
+  --btn-bg: var(--surface);
+  --btn-fg: var(--ink);
+  --btn-border: var(--line-strong);
+}
+.secondary:hover {
+  background: var(--surface-sunken);
+}
+
+.ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--teal-700);
+  --btn-border: transparent;
+  padding-inline: 0.4rem;
+}
+.ghost:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+.danger {
+  --btn-bg: var(--red-ink);
+}
+.danger:hover {
+  background: #97302a;
+}
+
+.sm {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.8rem;
+}
+.lg {
+  font-size: 1.02rem;
+  padding: 0.85rem 1.5rem;
+}
+.block {
+  width: 100%;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

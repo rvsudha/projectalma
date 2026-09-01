@@ -1,0 +1,190 @@
+/* ============================================================================
+   Design tokens & base styles.
+   Palette and type scale live here; components consume the variables only.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --paper: #fbfaf7;
+  --surface: #ffffff;
+  --surface-sunken: #f4f2ec;
+  --ink: #16181d;
+  --ink-soft: #4b4f5a;
+  --ink-faint: #8b8f9c;
+  --line: #e7e3d9;
+  --line-strong: #d8d3c4;
+
+  --teal-50: #e7f5f3;
+  --teal-100: #c6e9e4;
+  --teal-500: #0f8f86;
+  --teal-600: #0b756e;
+  --teal-700: #0a5f59;
+  --teal-ink: #063d39;
+
+  --amber-bg: #fdf1d8;
+  --amber-ink: #8a5a13;
+  --green-bg: #dcf3e3;
+  --green-ink: #1c6b3e;
+  --red-bg: #fde5e2;
+  --red-ink: #b23c2e;
+
+  --focus: #0f8f86;
+  --shadow-sm: 0 1px 2px rgba(22, 24, 29, 0.06), 0 1px 1px rgba(22, 24, 29, 0.04);
+  --shadow-md: 0 4px 16px rgba(22, 24, 29, 0.08), 0 2px 6px rgba(22, 24, 29, 0.05);
+  --shadow-lg: 0 24px 48px -12px rgba(6, 61, 57, 0.18);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --font-sans:
+    var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-serif), Georgia, "Times New Roman", serif;
+
+  --maxw: 1120px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* The product deliberately commits to a single light look for brand fidelity;
+     we still set an explicit dark ground so the page never borrows host chrome. */
+  :root {
+    color-scheme: light;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 1.4rem + 3vw, 3.6rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem);
+}
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--teal-600);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- layout helpers ---- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 18px;
+  }
+}
+
+.stack > * + * {
+  margin-top: var(--stack-gap, 1rem);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+  margin: 0 0 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 100;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  text-decoration: none;
+}

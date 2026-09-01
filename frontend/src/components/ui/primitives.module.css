@@ -1,0 +1,86 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 640px) {
+  .card {
+    padding: 20px;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.badgePending {
+  background: var(--amber-bg);
+  color: var(--amber-ink);
+}
+.badgeReached {
+  background: var(--green-bg);
+  color: var(--green-ink);
+}
+
+.alert {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.alertError {
+  background: var(--red-bg);
+  color: var(--red-ink);
+}
+.alertSuccess {
+  background: var(--green-bg);
+  color: var(--green-ink);
+}
+.alertInfo {
+  background: var(--teal-50);
+  color: var(--teal-ink);
+}
+.alert svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.spinner {
+  display: inline-block;
+  width: var(--size, 20px);
+  height: var(--size, 20px);
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--teal-600);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+}

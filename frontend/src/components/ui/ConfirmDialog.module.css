@@ -1,0 +1,39 @@
+.dialog {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0;
+  max-width: 520px;
+  width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  box-shadow: var(--shadow-lg);
+  color: var(--ink);
+  background: var(--surface);
+}
+.dialog::backdrop {
+  background: rgba(6, 61, 57, 0.28);
+  backdrop-filter: blur(2px);
+}
+.body {
+  padding: 28px 28px 24px;
+}
+.body h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+.body p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 28px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-sunken);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}

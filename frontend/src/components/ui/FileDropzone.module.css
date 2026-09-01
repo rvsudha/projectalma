@@ -1,0 +1,88 @@
+.zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 22px 18px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.zone:hover {
+  border-color: var(--teal-500);
+}
+.dragging {
+  border-color: var(--teal-500);
+  background: var(--teal-50);
+}
+.invalid {
+  border-color: var(--red-ink);
+}
+.icon {
+  color: var(--teal-600);
+}
+.primary {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.link {
+  color: var(--teal-700);
+  text-decoration: underline;
+}
+.hint {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.selected {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.selectedIcon {
+  color: var(--teal-600);
+}
+.selectedMeta {
+  flex: 1;
+  min-width: 0;
+}
+.selectedName {
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selectedSize {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+.remove {
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: inline-flex;
+}
+.remove:hover {
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
